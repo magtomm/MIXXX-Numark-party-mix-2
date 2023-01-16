@@ -364,9 +364,9 @@ var NumarkPartyMix = function() {
 
     var PAD_MODE_CONTROL_BYTE = lookup({
         CUE: 0x00,
-        LOOP: 0x0B,
-        SAMPLER: 0x0E,
-        EFFECT: 0x18,
+        LOOP: 0x0E,
+        SAMPLER: 0x0B,
+        EFFECT: 0x0F,
     });
 
     var PAD_NUM_CONTROL_BYTE = lookup({
@@ -488,10 +488,22 @@ var NumarkPartyMix = function() {
     };
 
     this.setPadMode = function(channel, control, value, status, group) {
-
+		print("channel :");
+		print(channel);
+		print("control :");
+		print(control);
+		print("value :");
+		print(value);
+		print("status :");
+		print(status);
+		print("group :");
+		print(group);
         var deck = DECK_PAD_CHANNEL[channel];
+		
         var modeName = PAD_MODE_CONTROL_BYTE[control];
         deckPadMode[deck] = modeName;
+		 print("padmode :");
+		 print(modeName);
 
         //trigger
         iterItems(padCallbackMappings, function(key, mappings) {
