@@ -19,7 +19,7 @@ var NumarkPartyMix = function() {
     var USE_FLASH = false;
     var USE_SAMPLE_BANK = true;
 
-    var RESOLUTION = 250;
+    var RESOLUTION = 300;
     var RECORD_SPEED = 33 + (1 / 3);
     var ALPHA = 1.0 / 8;
     var BETA = ALPHA / 32;
