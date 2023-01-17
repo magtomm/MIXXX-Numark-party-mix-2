@@ -8,7 +8,7 @@
     </info>
     <controller id="Party">
         <scriptfiles>
-            <file filename="Numark-Party-Mix-MK2-scripts.js" functionprefix="  "/>
+            <file functionprefix="  " filename="Numark-Party-Mix-MK2-scripts.js"/>
         </scriptfiles>
         <controls>
             <control>
@@ -522,7 +522,7 @@
                 <group>[Channel1]</group>
                 <key>NumarkPartyMix.setPadMode</key>
                 <status>0x94</status>
-                <midino>0x18</midino>
+                <midino>0x0F</midino>
                 <options>
                     <script-binding/>
                 </options>
@@ -531,7 +531,7 @@
                 <group>[Channel2]</group>
                 <key>NumarkPartyMix.setPadMode</key>
                 <status>0x95</status>
-                <midino>0x18</midino>
+                <midino>0x0F</midino>
                 <options>
                     <script-binding/>
                 </options>
