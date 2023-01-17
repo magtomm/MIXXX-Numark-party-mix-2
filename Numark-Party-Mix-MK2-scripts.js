@@ -114,11 +114,14 @@ var NumarkPartyMix = function() {
     var syncSelfCallbackHelper = function(group, control, statusByte, controlByte, valueByte) {
         var key = [group, control];
         var mappings = padCallbackMappings[key];
-        forEach(mappings, function(mapping) {
-            if (deckPadMode[mapping.deck] === mapping.modeName && mapping.statusByte === statusByte && mapping.controlByte === controlByte) {
-                midi.sendShortMsg(mapping.statusByte, mapping.controlByte, valueByte);
-            }
-        });
+		print("\n\n\n padCallbackMappings");
+		var str = JSON.stringify(padCallbackMappings);
+		print(str);
+        //forEach(mappings, function(mapping) {
+        //    if (deckPadMode[mapping.deck] === mapping.modeName && mapping.statusByte === statusByte && mapping.controlByte === controlByte) {
+        //        midi.sendShortMsg(mapping.statusByte, mapping.controlByte, valueByte);
+        //    }
+        //});
     };
 
     var padDefProto = {
@@ -432,8 +435,8 @@ var NumarkPartyMix = function() {
 
         // The SysEx message to send to the controller to force the midi controller
         // to send the status of every item on the control surface.
-        // 0x00 0x01 0x3F is Numark mfg. ID used in SysEx messages.
-        var ControllerStatusSysex = [0xF0, 0x00, 0x01, 0x3F, 0x38, 0x48, 0xF7];
+        // 0x00 0x20 0x7F is Serato mfg. ID used in SysEx messages.
+        var ControllerStatusSysex = [0xF0, 0x00, 0x20, 0x7F, 0x00, 0xF7];
 
         // After midi controller receives this Outbound Message request SysEx Message,
         // midi controller will send the status of every item on the
