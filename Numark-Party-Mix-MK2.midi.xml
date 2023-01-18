@@ -8,7 +8,7 @@
     </info>
     <controller id="Party">
         <scriptfiles>
-            <file functionprefix="  " filename="Numark-Party-Mix-MK2-scripts.js"/>
+            <file filename="Numark-Party-Mix-MK2-scripts.js" functionprefix="  "/>
         </scriptfiles>
         <controls>
             <control>
@@ -36,15 +36,6 @@
                 <midino>0x00</midino>
                 <options>
                     <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Library]</group>
-                <key>NumarkPartyMix.toggleView</key>
-                <status>0x8F</status>
-                <midino>0x00</midino>
-                <options>
-                    <script-binding/>
                 </options>
             </control>
             <control>
@@ -78,15 +69,6 @@
                 <group>[Channel2]</group>
                 <key>NumarkPartyMix.setPadMode</key>
                 <status>0x95</status>
-                <midino>0x00</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Library]</group>
-                <key>NumarkPartyMix.toggleView</key>
-                <status>0x9F</status>
                 <midino>0x00</midino>
                 <options>
                     <script-binding/>
@@ -248,6 +230,15 @@
             </control>
             <control>
                 <group>[Library]</group>
+                <key>NumarkPartyMix.toggleView</key>
+                <status>0x8F</status>
+                <midino>0x07</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
                 <key>MoveFocus</key>
                 <description>MIDI Learned from 2 messages.</description>
                 <status>0x8F</status>
@@ -264,6 +255,15 @@
                 <midino>0x07</midino>
                 <options>
                     <normal/>
+                </options>
+            </control>
+            <control>
+                <group>[Library]</group>
+                <key>NumarkPartyMix.toggleView</key>
+                <status>0x9F</status>
+                <midino>0x07</midino>
+                <options>
+                    <script-binding/>
                 </options>
             </control>
             <control>
@@ -358,6 +358,24 @@
             </control>
             <control>
                 <group>[Channel1]</group>
+                <key>NumarkPartyMix.setPadMode</key>
+                <status>0x94</status>
+                <midino>0x0F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel2]</group>
+                <key>NumarkPartyMix.setPadMode</key>
+                <status>0x95</status>
+                <midino>0x0F</midino>
+                <options>
+                    <script-binding/>
+                </options>
+            </control>
+            <control>
+                <group>[Channel1]</group>
                 <key>NumarkPartyMix.handlePad</key>
                 <status>0x84</status>
                 <midino>0x14</midino>
@@ -516,24 +534,6 @@
                 <midino>0x17</midino>
                 <options>
                     <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>NumarkPartyMix.setPadMode</key>
-                <status>0x94</status>
-                <midino>0x0F</midino>
-                <options>
-                    <script-binding/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel2]</group>
-                <key>NumarkPartyMix.setPadMode</key>
-                <status>0x95</status>
-                <midino>0x0F</midino>
-                <options>
-                    <script-binding/>
                 </options>
             </control>
             <control>

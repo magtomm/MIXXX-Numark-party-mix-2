@@ -114,9 +114,8 @@ var NumarkPartyMix = function() {
     var syncSelfCallbackHelper = function(group, control, statusByte, controlByte, valueByte) {
         var key = [group, control];
         var mappings = padCallbackMappings[key];
-		print("\n\n\n padCallbackMappings");
-		var str = JSON.stringify(padCallbackMappings);
-		print(str);
+		//var str = JSON.stringify(padCallbackMappings);
+		//print(str);
         //forEach(mappings, function(mapping) {
         //    if (deckPadMode[mapping.deck] === mapping.modeName && mapping.statusByte === statusByte && mapping.controlByte === controlByte) {
         //        midi.sendShortMsg(mapping.statusByte, mapping.controlByte, valueByte);
@@ -164,15 +163,19 @@ var NumarkPartyMix = function() {
 
         var getCurrentBankedGroup = function() {
             if (USE_SAMPLE_BANK) {
-                var bank = engine.getValue('[Deere]', 'sampler_bank_current'); //0,1,2,3
+                var bank = engine.getValue(this.group, 'sampler_bank_current'); //0,1,2,3
                 return '[Sampler' + ((bank * 4) + samplerNum) + ']'; //4 is num of pads
             }
+			print("\n\n\n samplernum:")
+			print(samplerNum);
             return '[Sampler' + samplerNum + ']'; //4 is num of pads
         };
 
         var trackPlayCallback = function(value, group, control) {
             if (getCurrentBankedGroup() === group) {
                 var isLoaded = trackLoaded[group];
+				print("\n\n\n isLoaded");
+				print(isLoaded);
                 var setLED = OFF;
 
                 if (USE_FLASH && value) {
@@ -188,6 +191,8 @@ var NumarkPartyMix = function() {
         };
 
         var trackLoadedCallback = function(value, group, control) {
+			print("\n\n\n LoadedCB");
+			print(isLoaded);
             trackLoaded[group] = value > 0;
             if (getCurrentBankedGroup() === group) {
                 var isLoaded = trackLoaded[group];
@@ -216,15 +221,18 @@ var NumarkPartyMix = function() {
         };
 
         this.handle = function(isPressed) {
-            if (isPressed) {
+			if (isPressed) {
                 var bankedGroup = getCurrentBankedGroup();
-                if (engine.getValue(bankedGroup, 'play')) {
-                    engine.setValue(bankedGroup, 'cue_gotoandstop', 1);
-                } else if (trackLoaded[bankedGroup]) {
-                    engine.setValue(bankedGroup, 'cue_gotoandplay', 1);
-                } else {
-                    engine.setValue(bankedGroup, 'LoadSelectedTrack', 1);
-                }
+				if (engine.getValue(bankedGroup, "track_loaded") === 0) {
+                        engine.setValue(bankedGroup, "LoadSelectedTrack", 1);
+                    } else {
+                        if (engine.getValue(bankedGroup, "play") === 1) {
+                            engine.setValue(bankedGroup, "start_stop", 1);
+                        } else {
+                            engine.setValue(bankedGroup, "start_play", 1);
+                        }
+                    }
+					
             }
         };
     };
@@ -238,6 +246,7 @@ var NumarkPartyMix = function() {
                 if (deckPadMode[mapping.deck] === mapping.modeName) {
                     var isActive = mapping.controlByte === targetControlByte;
                     midi.sendShortMsg(mapping.statusByte, mapping.controlByte, isActive ? ON : DIM);
+					print("\n\n midi.sendShortMsg(mapping.statusByte, mapping.controlByte, isActive ? ON : DIM);");
                 }
             });
 
@@ -257,7 +266,8 @@ var NumarkPartyMix = function() {
 
         this.handle = function(isPressed) {
             if (isPressed) {
-                engine.setValue('[Deere]', 'sampler_bank_' + sampleBankNum, 1);
+				print("\n\n\n function(isPressed)");
+			    engine.setValue('[Deere]', 'sampler_bank_' + sampleBankNum, 1);
             }
         };
     };
@@ -491,23 +501,12 @@ var NumarkPartyMix = function() {
     };
 
     this.setPadMode = function(channel, control, value, status, group) {
-		print("channel :");
-		print(channel);
-		print("control :");
-		print(control);
-		print("value :");
-		print(value);
-		print("status :");
-		print(status);
-		print("group :");
-		print(group);
+		
         var deck = DECK_PAD_CHANNEL[channel];
 		
         var modeName = PAD_MODE_CONTROL_BYTE[control];
         deckPadMode[deck] = modeName;
-		 print("padmode :");
-		 print(modeName);
-
+		 
         //trigger
         iterItems(padCallbackMappings, function(key, mappings) {
             forEach(mappings, function(bindings) {
