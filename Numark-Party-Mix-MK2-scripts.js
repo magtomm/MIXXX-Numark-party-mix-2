@@ -616,7 +616,7 @@ var NumarkPartyMix = function() {
 
 
     this.shutdown = function() {
-
+		print("\n\n\n shutdown \n\n\n");
         // set modes back to CUE
         var cueByte = PAD_MODE_CONTROL_BYTE.CUE;
         midi.sendShortMsg(0x94, cueByte, ON);

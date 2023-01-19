@@ -8,7 +8,7 @@
     </info>
     <controller id="Party">
         <scriptfiles>
-            <file filename="Numark-Party-Mix-MK2-scripts.js" functionprefix="  "/>
+            <file filename="Numark-Party-Mix-MK2-scripts.js" functionprefix="NumarkPartyMix"/>
         </scriptfiles>
         <controls>
             <control>
