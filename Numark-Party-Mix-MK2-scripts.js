@@ -166,17 +166,13 @@ var NumarkPartyMix = function() {
                 var bank = engine.getValue(this.group, 'sampler_bank_current'); //0,1,2,3
                 return '[Sampler' + ((bank * 4) + samplerNum) + ']'; //4 is num of pads
             }
-			print("\n\n\n samplernum:")
-			print(samplerNum);
-            return '[Sampler' + samplerNum + ']'; //4 is num of pads
+			return '[Sampler' + samplerNum + ']'; //4 is num of pads
         };
 
         var trackPlayCallback = function(value, group, control) {
             if (getCurrentBankedGroup() === group) {
                 var isLoaded = trackLoaded[group];
-				print("\n\n\n isLoaded");
-				print(isLoaded);
-                var setLED = OFF;
+				var setLED = OFF;
 
                 if (USE_FLASH && value) {
                     setLED = FLASH;
@@ -191,9 +187,7 @@ var NumarkPartyMix = function() {
         };
 
         var trackLoadedCallback = function(value, group, control) {
-			print("\n\n\n LoadedCB");
-			print(isLoaded);
-            trackLoaded[group] = value > 0;
+			trackLoaded[group] = value > 0;
             if (getCurrentBankedGroup() === group) {
                 var isLoaded = trackLoaded[group];
                 var setLED = ON;
@@ -501,7 +495,7 @@ var NumarkPartyMix = function() {
     };
 	
 	this.play = function(channel, control, value, status, group){
-		if(engine.getValue("[Channel" + (control+1) + "]", "play") === 1) {
+		if(engine.getValue("[Channel" + (channel+1) + "]", "play") === 1) {
 			midi.sendShortMsg(0x90+channel, control, ON);
 		}
 		else {
