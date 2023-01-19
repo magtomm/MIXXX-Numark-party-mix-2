@@ -13,29 +13,20 @@
         <controls>
             <control>
                 <group>[Channel1]</group>
-                <key>play</key>
+                <key>NumarkPartyMix.play</key>
                 <status>0x80</status>
                 <midino>0x00</midino>
                 <options>
-                    <normal/>
-                </options>
-            </control>
-            <control>
-                <group>[Channel1]</group>
-                <key>play</key>
-                <status>0x80</status>
-                <midino>0x00</midino>
-                <options>
-                    <normal/>
+                    <script-binding/>
                 </options>
             </control>
             <control>
                 <group>[Channel2]</group>
-                <key>play</key>
+                <key>NumarkPartyMix.play</key>
                 <status>0x81</status>
                 <midino>0x00</midino>
                 <options>
-                    <normal/>
+                    <script-binding/>
                 </options>
             </control>
             <control>

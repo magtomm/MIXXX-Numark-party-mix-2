@@ -499,7 +499,16 @@ var NumarkPartyMix = function() {
     this.handlePfl = function(channel, control, value, status, group) {
         engine.setValue(group, 'pfl', value ? 1 : 0);
     };
-
+	
+	this.play = function(channel, control, value, status, group){
+		if(engine.getValue("[Channel" + (control+1) + "]", "play") === 1) {
+			midi.sendShortMsg(0x90+channel, control, ON);
+		}
+		else {
+			midi.sendShortMsg(0x90+channel, control, DIM);
+		}
+	};
+	
     this.setPadMode = function(channel, control, value, status, group) {
 		
         var deck = DECK_PAD_CHANNEL[channel];
