@@ -13,9 +13,9 @@
 
 var NumarkPartyMix = function() {
 
-    var SCRATCH_LONGPRESS_DELAY = 100;
+    var SCRATCH_LONGPRESS_DELAY = 0;
     var LIBRARY_LONGPRESS_DELAY = 500;
-    var FLASH_DELAY = 500;
+    var FLASH_DELAY = 200;
     var USE_FLASH = false;
     var USE_SAMPLE_BANK = true;
 
