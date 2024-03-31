@@ -24,7 +24,7 @@ var NumarkPartyMix = function() {
     var ALPHA = 1.0 / 8;
     var BETA = ALPHA / 32;
     var RAMP_DOWN = true;
-    var RAMP_UP = true;
+    var RAMP_UP = false;
 
     var ON = 0x7F;
     var OFF = 0x00;
@@ -300,19 +300,19 @@ var NumarkPartyMix = function() {
         DECK1: {
             PAD1: {
                 CUE: new padDefCue(1, 1),
-                LOOP: new padDefLoop(1, 1),
+                LOOP: new padDefLoop(1, 0.5),
                 SAMPLER: new padDefSampler(1),
                 EFFECT: new padDefGeneric('[EffectRack1_EffectUnit1]', 'enabled'),
             },
             PAD2: {
                 CUE: new padDefCue(1, 2),
-                LOOP: new padDefLoop(1, 2),
+                LOOP: new padDefLoop(1, 1),
                 SAMPLER: new padDefSampler(2),
                 EFFECT: new padDefGeneric('[EffectRack1_EffectUnit2]', 'enabled'),
             },
             PAD3: {
                 CUE: new padDefCue(1, 3),
-                LOOP: new padDefLoop(1, 4),
+                LOOP: new padDefLoop(1, 2),
                 SAMPLER: new padDefSampler(3),
                 EFFECT: new padDefSimpleEffect(function(val) {
                     engine.brake(1, val);
@@ -320,7 +320,7 @@ var NumarkPartyMix = function() {
             },
             PAD4: {
                 CUE: new padDefCue(1, 4),
-                LOOP: new padDefLoop(1, 8),
+                LOOP: new padDefLoop(1, 4),
                 SAMPLER: new padDefSampler(4),
                 EFFECT: new padDefSimpleEffect(function(val) {
                     engine.spinback(1, val);
@@ -330,19 +330,19 @@ var NumarkPartyMix = function() {
         DECK2: {
             PAD1: {
                 CUE: new padDefCue(2, 1),
-                LOOP: new padDefLoop(2, 1),
+                LOOP: new padDefLoop(2, 0.5),
                 SAMPLER: USE_SAMPLE_BANK ? new padDefSampleBank(1) : padDefNoOp,
                 EFFECT: new padDefGeneric('[EffectRack1_EffectUnit3]', 'enabled'),
             },
             PAD2: {
                 CUE: new padDefCue(2, 2),
-                LOOP: new padDefLoop(2, 2),
+                LOOP: new padDefLoop(2, 1),
                 SAMPLER: USE_SAMPLE_BANK ? new padDefSampleBank(2) : padDefNoOp,
                 EFFECT: new padDefGeneric('[EffectRack1_EffectUnit4]', 'enabled'),
             },
             PAD3: {
                 CUE: new padDefCue(2, 3),
-                LOOP: new padDefLoop(2, 4),
+                LOOP: new padDefLoop(2, 2),
                 SAMPLER: USE_SAMPLE_BANK ? new padDefSampleBank(3) : padDefNoOp,
                 EFFECT: new padDefSimpleEffect(function(val) {
                     engine.brake(2, val);
@@ -350,7 +350,7 @@ var NumarkPartyMix = function() {
             },
             PAD4: {
                 CUE: new padDefCue(2, 4),
-                LOOP: new padDefLoop(2, 8),
+                LOOP: new padDefLoop(2, 4),
                 SAMPLER: USE_SAMPLE_BANK ? new padDefSampleBank(4) : padDefNoOp,
                 EFFECT: new padDefSimpleEffect(function(val) {
                     engine.spinback(2, val);
