@@ -133,7 +133,7 @@ var NumarkPartyMix = function() {
         },
         handle: function(isPressed) {
             if (this.toggle) {
-                if (isPressed) {
+                if (!isPressed) {
                     script.toggleControl(this.group, this.actionControl);
                 }
             } else {
